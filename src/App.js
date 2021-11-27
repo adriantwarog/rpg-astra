@@ -1,29 +1,74 @@
 import './App.css';
 import React, { Component } from 'react'
+import uuid from "node-uuid";
+import api from "./utils/api";
 
 class App extends Component {
 
   constructor(props){
       super(props);
       this.state = {
-        skills: [
-          {skill: "HTML", stat: 0, color: 'blue', },
-          {skill: "CSS", stat: 0, color: 'yellow', },
-          {skill: "JS", stat: 0, color: 'yellow', },
-          {skill: "React", stat: 0, color: 'indigo', },
-          {skill: "Angular", stat: 0, color: 'red', }
-        ],
-        experience: 0,
+        skills: [],
+        skill: "",
+        color: "",
       }
     }
 
+    addSkill = (e) => {
+      e.preventDefault()
+      
+      api
+        .createSkill({
+          id: uuid.v1(),
+          stat: 0,
+          text: this.state.skill,
+          color: 'blue',
+        })
+        .then((skill) => {
+          api.getSkills().then((skills) => this.setState({ skills }));
+          this.setState({ skill: "" })
+        });
+    };
+  
+    deleteSkill = (id) => {
+      api.deleteSkill(id).then((skill) => {
+        api.getSkills().then((skills) => this.setState({ skills }));
+      });
+    };
+  
+    editSkill = (id, text, stat) => {
+      api
+        .updateSkill({
+          id,
+          text,
+          stat,
+        })
+        .then((skill) => {
+          api.getSkills().then((skills) => this.setState({ skills }));
+        });
+    };
+  
+    componentDidMount() {
+      api.getSkills().then((skills) => {
+        this.setState({ skills })});
+    }
+  
+    actions = {
+      addSkill: this.addSkill,
+      deleteSkill: this.deleteSkill,
+      editSkill: this.editSkill,
+    };
+
     increaseStat = (index) => {
       let skills = this.state.skills
-      this.state.skills[index].stat = this.state.skills[index].stat + 5
+      skills[index].stat = skills[index].stat + 5
       this.setState({ skills })
     }
 
     currentPercent = () => {
+      if(this.state.skills){
+        return 0
+      }
       let totalSkills = this.state.skills.map(skill => skill.stat).reduce((next,cur) => next + cur)
       let currentLevel = parseInt((this.state.skills.map(skill => skill.stat).reduce((next,cur) => next + cur) / 100) + 1)
       console.log(totalSkills - ((currentLevel - 1) * 100)  )
@@ -43,7 +88,7 @@ class App extends Component {
                         Adrian Twarog
                     </div>
                     <div className="level text-4xl font-bold leading-none">
-                        Level {parseInt((this.state.skills.map(skill => skill.stat).reduce((next,cur) => next + cur) / 100) + 1)}
+                        {/* Level {parseInt((this.state.skills.map(skill => skill.stat).reduce((next,cur) => next + cur) / 100) + 1)} */}
                     </div>
                     <div className="desc text-md font-medium mt-1 text-blue-400">
                         Full Stack Programmer
@@ -61,7 +106,8 @@ class App extends Component {
                 </div>
                 <div className="flex mt-1">
                   <div className="flex text-sm text-gray-400 flex-1">
-                    Experience: {this.state.skills.map(skill => skill.stat).reduce((next,cur) => next + cur) * 10}
+                    Experience: 
+                    {/* {this.state.skills.map(skill => skill.stat).reduce((next,cur) => next + cur) * 10} */}
                   </div>
                   <div className="flex text-sm text-gray-400 flex-1 justify-end">
                     Next Level: 1000
@@ -70,7 +116,8 @@ class App extends Component {
             </div>
             <div className="skills p-4">
               <div className="text-2xl font-medium">
-                Skill Points: {this.state.skills.map(skill => skill.stat).reduce((next,cur) => next + cur)}
+                Skill Points: 
+                {/* {this.state.skills.map(skill => skill.stat).reduce((next,cur) => next + cur)} */}
               </div>
             </div>
             <div className="border-b border-gray-600">
@@ -94,6 +141,19 @@ class App extends Component {
                 Unassigned Points: 0
               </div>
             </div>
+
+            <div className="border-b border-gray-600"></div>
+
+            <div className="skills p-4">
+              <div className="text-2xl text-gray-500">
+                Add Skill
+              </div>
+            </div>
+
+            <form onSubmit={this.addSkill} className="p-4">
+              <input type="text" name="skill" placeholder="skill" onChange={e => this.setState({ skill: e.target.value })} className="bg-gray-600 p-1 px-4 color-white border-none" />
+              <input type="submit" className="bg-black text-white p-1 px-4" />
+            </form>
 
 
         </div>

@@ -12,6 +12,7 @@ const getSkills = async () => {
     return response.json();
   };
   
+  
   const updateSkill = async (skill) => {
     const response = await fetch("/.netlify/functions/updateSkill", {
       body: JSON.stringify(skill),

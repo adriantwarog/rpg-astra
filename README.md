@@ -1,70 +1,45 @@
-# Getting Started with Create React App
+# Astra RPG
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This example will is a simple RPG application that allows you to add skills and allocation skill points to them, gaining you real experience and levels as a result.
 
-## Available Scripts
+<img src="./example.jpg" alt="Astra RPG" />
 
-In the project directory, you can run:
+## 🎯 Objectives
+* Create your own **RPG** app by cloning the project
+* Learn about **Astra DB** with webapp development
+* Use **React** with **state** and **props**
+* Use **Netlify** to create a simple API
 
-### `yarn start`
+## 📝 Getting Started
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+The requirements needed are quite simple, which include an account for Astra DB (free), having Netlify CLI.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- [Astra DB](https://dtsx.io/3DpCALm)
+- [Netlify](https://www.netlify.com/)
 
-### `yarn test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 1. AstraDB and create database
 
-### `yarn build`
+Register a DataStax Astra account `Github`, `Google` accounts or register with an `email`.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Create a database with a keyspace of `rpg`
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Once the database is created and the status is active `Active` we can move onto the next step.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 2. Create a security token
 
-### `yarn eject`
+Create a security token for with Database Permissions and use the keys to populate the `.env-template` file which should be renamed to `.env`.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### 3. Launch the RPG app
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Ensure Netlify is installed, if it is not, install the CLI by running the following command:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```
+npm install -g netlify-cli
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Then you can run the application locally using
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```
+netlify dev
+```

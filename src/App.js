@@ -62,7 +62,7 @@ class App extends Component {
   
     increaseStat = (index) => {
       let skills = this.state.skills
-      skills[index].stat = skills[index].stat + 34
+      skills[index].stat = skills[index].stat + 1
       // console.log(`skills[index]`,skills[index])
       api
         .updateSkill({

@@ -1,0 +1,5 @@
+- Changed from class component to functional component.
+- Seperate Skill and EditSkill component from App.
+- Add more colors.
+- Skill submit only if length is > 0.
+- Fixed edit skills bug.
